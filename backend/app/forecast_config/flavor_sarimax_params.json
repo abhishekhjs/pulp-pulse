@@ -1,0 +1,34 @@
+{
+  "_description": "Per-flavor SARIMAX order (p, d, q) and seasonal_order (P, D, Q, s) configurations.",
+  "flavor_params": {
+    "Mango Peach Basil": {
+      "order": [1, 1, 1],
+      "seasonal_order": [1, 0, 1, 7],
+      "description": "Core steady SKU with distinct 7-day weekly retail cycles"
+    },
+    "Guava Chilli": {
+      "order": [1, 1, 1],
+      "seasonal_order": [1, 0, 1, 7],
+      "description": "Core regional SKU with weekly replenishment rhythms"
+    },
+    "Passionfruit Punch": {
+      "order": [1, 1, 1],
+      "seasonal_order": [1, 0, 0, 7],
+      "description": "High seasonal sensitivity"
+    },
+    "Dragonfruit Bloom": {
+      "order": [1, 1, 1],
+      "seasonal_order": [0, 1, 1, 7],
+      "description": "Growth SKU with trending demand"
+    },
+    "Dragon Passion": {
+      "order": [1, 1, 1],
+      "seasonal_order": [0, 1, 1, 7],
+      "description": "Viral new launch with sharp slope shifts"
+    }
+  },
+  "default": {
+    "order": [1, 1, 1],
+    "seasonal_order": [1, 0, 1, 7]
+  }
+}

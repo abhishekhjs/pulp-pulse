@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Light Design Tokens (Airtable Spec) ───────────────────────── */
+:root {
+  --bg-canvas:              #ffffff;
+  --bg-surface:             #ffffff;
+  --bg-soft:                #f8fafc;
+  --bg-strong:              #e0e2e6;
+  --bg-dark:                #181d26;
+  --bg-dark-elevated:       #1d1f25;
+  --border-hairline:        #dddddd;
+  --border-strong:          #9297a0;
+  --text-ink:               #181d26;
+  --text-body:              #333840;
+  --text-muted:             #41454d;
+  --primary-cta:            #181d26;
+  --primary-active:         #0d1218;
+  --sidebar-width:          240px;
+
+  /* Signature Card Palette */
+  --signature-coral:        #aa2d00;
+  --signature-forest:       #0a2e0e;
+  --signature-cream:        #f5e9d4;
+  --signature-peach:        #fcab79;
+  --signature-mint:         #a8d8c4;
+  --signature-yellow:       #f4d35e;
+  --signature-mustard:      #d9a441;
+
+  /* Semantic */
+  --link:                   #1b61c9;
+  --link-active:            #1a3866;
+  --info:                   #254fad;
+  --info-border:            #458fff;
+  --success:                #006400;
+  --success-border:         #39bf45;
+}
+
+/* ─── Base Reset ────────────────────────────────── */
+@layer base {
+  html {
+    background: #ffffff;
+    color: var(--text-body);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Haas Groot Disp', Haas, 'Inter Display', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #ffffff;
+    color: var(--text-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Airtable Modest-Weight Headlines (Never bold for its own sake) */
+  h1, h2, h3, h4, h5, h6, .font-title {
+    font-family: 'Haas Groot Disp', Haas, 'Inter Display', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: 0;
+    font-weight: 400;
+    color: var(--text-ink);
+  }
+
+  h1 { font-size: 40px; line-height: 1.2; font-weight: 400; }
+  h2 { font-size: 32px; line-height: 1.2; font-weight: 400; }
+  h3 { font-size: 24px; line-height: 1.35; font-weight: 400; }
+  h4 { font-size: 20px; line-height: 1.5; font-weight: 400; }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ─── Components Layer ───────────────────────────── */
+@layer components {
+  /* Cards */
+  .card {
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  .card-hover {
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card-hover:hover {
+    border-color: #9297a0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Navigation Sidebar */
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-all duration-150 relative cursor-pointer active:scale-[0.99] select-none text-airtable-muted;
+  }
+  .sidebar-item:hover {
+    @apply bg-airtable-surface-soft text-airtable-ink;
+  }
+  .sidebar-item.active {
+    @apply bg-airtable-surface-soft text-airtable-ink font-semibold;
+  }
+  .sidebar-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 20%;
+    bottom: 20%;
+    width: 3px;
+    background: #181d26;
+    border-radius: 0 2px 2px 0;
+  }
+
+  /* Buttons (Airtable Spec) */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white bg-airtable-primary hover:bg-airtable-primary-active active:bg-airtable-primary-active transition-all duration-150 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-airtable-primary/30 shadow-xs;
+  }
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .btn-secondary, .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-lg text-sm font-medium text-airtable-ink bg-white border border-airtable-hairline transition-all duration-150 hover:bg-airtable-surface-soft hover:border-airtable-border-strong active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-airtable-primary/10 shadow-xs;
+  }
+  .btn-secondary:disabled, .btn-ghost:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded-lg text-sm font-medium text-airtable-coral bg-white border border-airtable-coral/30 transition-all duration-150 hover:bg-airtable-coral/5 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-airtable-coral/20 shadow-xs;
+  }
+
+  /* Inputs (Airtable Spec: rounded-sm = 6px, hairline border, info-border on focus) */
+  .input-base {
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    color: #181d26;
+    @apply rounded-sm px-3 py-2 text-xs outline-none transition-all placeholder:text-airtable-muted/60 focus:border-airtable-info-border focus:ring-1 focus:ring-airtable-info-border;
+  }
+
+  /* Badges */
+  .badge-breach {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium bg-[#aa2d00]/10 text-airtable-coral border border-airtable-coral/30;
+  }
+  .badge-warning {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium bg-[#f5e9d4] text-airtable-ink border border-airtable-mustard/40;
+  }
+  .badge-healthy {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium bg-[#0a2e0e]/10 text-airtable-forest border border-airtable-forest/30;
+  }
+
+  /* Section metadata label */
+  .section-label {
+    @apply text-[11px] font-medium uppercase tracking-[0.08em] text-airtable-muted;
+  }
+}
+
+/* ─── Scrollbars ─────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(24, 29, 38, 0.12); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(24, 29, 38, 0.24); }

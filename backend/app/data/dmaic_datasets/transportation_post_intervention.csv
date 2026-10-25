@@ -1,0 +1,10 @@
+period,defect_type,count,total_produced
+2027-W14,Emergency_Air_Freight_Penalty,0,16000
+2027-W14,Cold_Chain_Temp_Excursion,120,16000
+2027-W14,Transit_SLA_Delay,95,16000
+2027-W15,Emergency_Air_Freight_Penalty,0,16000
+2027-W15,Cold_Chain_Temp_Excursion,110,16000
+2027-W15,Transit_SLA_Delay,90,16000
+2027-W16,Emergency_Air_Freight_Penalty,0,16000
+2027-W16,Cold_Chain_Temp_Excursion,115,16000
+2027-W16,Transit_SLA_Delay,90,16000

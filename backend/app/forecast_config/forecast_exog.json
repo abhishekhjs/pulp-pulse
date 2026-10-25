@@ -1,0 +1,37 @@
+{
+  "_description": "Exogenous weighting parameters for SARIMAX demand forecasting. Adding or toggling regressors here takes effect on the next agent run without code deployment.",
+  "regressors": {
+    "seasonality": {
+      "enabled": true,
+      "weight": 1.0,
+      "type": "month_dummy",
+      "description": "Cyclical seasonal factor based on month of year"
+    },
+    "marketing_campaign_flag": {
+      "enabled": true,
+      "weight": 1.25,
+      "type": "campaign_schedule",
+      "description": "Active commercial campaign window multiplier per SKU",
+      "flavor_campaigns": {
+        "Dragon Passion": [
+          ["2027-03-15", "2027-04-30"]
+        ],
+        "Mango Peach Basil": [
+          ["2027-04-01", "2027-06-30"]
+        ]
+      }
+    },
+    "social_trend_score": {
+      "enabled": true,
+      "weight": 1.4,
+      "type": "derived_b3_deviation",
+      "description": "Cheap momentum score derived from B3 QC velocity deviation instead of heavy NLP"
+    },
+    "channel_growth_rate": {
+      "enabled": true,
+      "weight": 0.85,
+      "type": "rolling_channel_growth",
+      "description": "Rolling 90-day growth rate per distribution channel"
+    }
+  }
+}

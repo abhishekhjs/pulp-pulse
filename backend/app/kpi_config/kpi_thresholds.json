@@ -1,0 +1,506 @@
+[
+  {
+    "kpi_code": "A1",
+    "name": "Summer Contribution Margin Realized",
+    "category": "financial",
+    "baseline": "Lost \u20b923.31 Cr net profit in summer season",
+    "target": "\u20b9184.32 Cr summer CM realized (>=97% of potential)",
+    "trigger_condition": "weekly trajectory >3% behind target potential",
+    "comparison_operator": ">",
+    "trigger_value": 0.03,
+    "approval_tier": "coo",
+    "linkage": [
+      "A2",
+      "A3",
+      "A4"
+    ],
+    "caption_template": "Summer CM trajectory is {val_pct}% behind target, risking seasonal contribution margin."
+  },
+  {
+    "kpi_code": "A2",
+    "name": "Stock Out Revenue Loss Rate",
+    "category": "financial",
+    "baseline": "8% of summer revenue (\u20b946.08 Cr) lost to stock-outs",
+    "target": "<1.0% stock-out rate across all SKUs",
+    "trigger_condition": "weekly SKU unfulfilled demand rate >3%",
+    "comparison_operator": ">",
+    "trigger_value": 0.03,
+    "approval_tier": "supply_lead",
+    "linkage": [
+      "B3",
+      "C1",
+      "E1"
+    ],
+    "caption_template": "Stock-out rate across key retail accounts is {val_pct}%, risking brand listing penalties."
+  },
+  {
+    "kpi_code": "A3",
+    "name": "Overstock Write Off Value",
+    "category": "financial",
+    "baseline": "\u20b96.00 Cr in write-offs and distress discounting",
+    "target": "<\u20b90.50 Cr total seasonal write-offs",
+    "trigger_condition": "projected depot exposure value exceeds \u20b910 lakh",
+    "comparison_operator": ">",
+    "trigger_value": 1000000.0,
+    "approval_tier": "supply_lead",
+    "linkage": [
+      "D1",
+      "D2",
+      "E2"
+    ],
+    "caption_template": "Projected inventory overstock write-off exposure stands at \u20b9{val_fmt} across slow-moving depots."
+  },
+  {
+    "kpi_code": "A4",
+    "name": "Emergency Freight Premium Ratio",
+    "category": "financial",
+    "baseline": "5.0x normal freight (\u20b93.2 Cr air vs \u20b90.64 Cr road)",
+    "target": "1.0x (zero unbudgeted emergency air freight)",
+    "trigger_condition": "air-to-road cost ratio >2.0x",
+    "comparison_operator": ">",
+    "trigger_value": 2.0,
+    "approval_tier": "coo",
+    "linkage": [
+      "F1",
+      "F2",
+      "C3"
+    ],
+    "caption_template": "Air-to-road expedited freight ratio is {val}x normal baseline (target: zero air penalty)."
+  },
+  {
+    "kpi_code": "A5",
+    "name": "Competitive Shelf Loss Risk",
+    "category": "financial",
+    "baseline": "Rival took shelf space within 6 weeks of stockouts",
+    "target": "Zero permanent MT/QC listing losses",
+    "trigger_condition": "consecutive stock-out days at MT or QC >= 10",
+    "comparison_operator": ">=",
+    "trigger_value": 10.0,
+    "approval_tier": "coo",
+    "linkage": [
+      "A2",
+      "E1"
+    ],
+    "caption_template": "Consecutive retail out-of-stock count reached {val} days; competitor shelf displacement risk."
+  },
+  {
+    "kpi_code": "B1",
+    "name": "Demand Sensing Latency",
+    "category": "demand",
+    "baseline": "Month-end batch sales visibility (~30 days latency)",
+    "target": "<24 hours automated data ingestion",
+    "trigger_condition": "channel sales report ingest latency > 48 hours",
+    "comparison_operator": ">",
+    "trigger_value": 48.0,
+    "approval_tier": "ops",
+    "linkage": [
+      "G1",
+      "B3"
+    ],
+    "caption_template": "Channel sales automated ingest pipeline latency is {val} hours (target: <24h daily refresh)."
+  },
+  {
+    "kpi_code": "B2",
+    "name": "Forecast Error Rate",
+    "category": "demand",
+    "baseline": "30% average error at flavor and depot level",
+    "target": "<15% weighted absolute error",
+    "trigger_condition": "rolling 7-day forecast error > 20%",
+    "comparison_operator": ">",
+    "trigger_value": 0.2,
+    "approval_tier": "planner",
+    "linkage": [
+      "B3",
+      "E1"
+    ],
+    "caption_template": "Rolling 7-day forecast error rate is {val_pct}% across core SKU volume (threshold: 20%)."
+  },
+  {
+    "kpi_code": "B3",
+    "name": "QC Velocity Deviation",
+    "category": "demand",
+    "baseline": "4x viral spike completely missed for 2+ weeks",
+    "target": "Trigger fires same day deviation crosses 25%",
+    "trigger_condition": "3-day rolling QC sell-through deviation from forecast exceeds threshold",
+    "comparison_operator": ">",
+    "trigger_value": 0.25,
+    "approval_tier": "supply_lead",
+    "linkage": [
+      "C1",
+      "C2",
+      "E3"
+    ],
+    "caption_template": "QC demand for {flavor} is {val_pct}% above forecast, viral sell-through velocity detected."
+  },
+  {
+    "kpi_code": "B4",
+    "name": "GT Primary Billing Velocity Conflict",
+    "category": "demand",
+    "baseline": "No outlet POS data; month-end distributor summaries",
+    "target": "Early proxy billing divergence detected within 48h",
+    "trigger_condition": "depot primary billing velocity conflicts with QC/MT trend by >20%",
+    "comparison_operator": ">",
+    "trigger_value": 0.2,
+    "approval_tier": "planner",
+    "linkage": [
+      "B3",
+      "E1"
+    ],
+    "caption_template": "Depot primary billing velocity conflicts with QC and MT sell-through by {val_pct}%."
+  },
+  {
+    "kpi_code": "C1",
+    "name": "Plant Utilization Rate",
+    "category": "supply",
+    "baseline": "Ran at 95% with zero spare buffer",
+    "target": "Operate 92% to 95%, trigger co-packer before 95% is reached",
+    "trigger_condition": "projected 14-day plant utilization crosses threshold",
+    "comparison_operator": ">",
+    "trigger_value": 0.93,
+    "approval_tier": "supply_lead",
+    "linkage": [
+      "C2",
+      "A2",
+      "A3"
+    ],
+    "caption_template": "Plant running at {val_pct}% utilization; buffer capacity approaching co-packer notice cutoff."
+  },
+  {
+    "kpi_code": "C2",
+    "name": "Co-Packer Lead Time Compliance",
+    "category": "supply",
+    "baseline": "2-week notice window missed, triggered too late",
+    "target": "Notice issued strictly >= 14 days before capacity wall",
+    "trigger_condition": "days of notice provided before capacity breach < 14",
+    "comparison_operator": "<",
+    "trigger_value": 14.0,
+    "approval_tier": "ops",
+    "linkage": [
+      "C1",
+      "A2"
+    ],
+    "caption_template": "Advance co-packer notice provided is {val} days (contractual requirement: >=14 days)."
+  },
+  {
+    "kpi_code": "C3",
+    "name": "Frozen Pulp Cover Days",
+    "category": "supply",
+    "baseline": "Held only 14 days of passionfruit pulp heading into May closure",
+    "target": "Maintain 35 to 42 days buffer (min 28 days) in plant cold storage",
+    "trigger_condition": "plant pulp inventory cover days < 28 between April 1 and June 30",
+    "comparison_operator": "<",
+    "trigger_value": 28.0,
+    "approval_tier": "supply_lead",
+    "linkage": [
+      "F1",
+      "A4"
+    ],
+    "caption_template": "{ingredient} inventory at {val} days cover; pre-monsoon safe buffer target is 35 days."
+  },
+  {
+    "kpi_code": "C4",
+    "name": "Single Source Dependency Ratio",
+    "category": "supply",
+    "baseline": "100% of passionfruit volume tied to single cooperative",
+    "target": "<15% volume exposure at 100% single source",
+    "trigger_condition": "single-source ingredient summer volume share > 15%",
+    "comparison_operator": ">",
+    "trigger_value": 0.15,
+    "approval_tier": "coo",
+    "linkage": [
+      "C3",
+      "C5"
+    ],
+    "caption_template": "Single-source ingredient volume exposure is {val_pct}% tied to one cooperative."
+  },
+  {
+    "kpi_code": "C5",
+    "name": "Total Landed Risk-Adjusted Cost",
+    "category": "supply",
+    "baseline": "Procurement scored only on nominal price/kg",
+    "target": "Scored on risk-adjusted cost including disruption probability",
+    "trigger_condition": "nominal cost favored despite risk-adjusted cost saving > 5%",
+    "comparison_operator": ">",
+    "trigger_value": 0.05,
+    "approval_tier": "supply_lead",
+    "linkage": [
+      "C4",
+      "A4"
+    ],
+    "caption_template": "Landed procurement cost evaluation shows {val_pct}% potential savings via risk-adjusted sourcing."
+  },
+  {
+    "kpi_code": "C6",
+    "name": "Raw Pulp Safety Buffer Index",
+    "category": "supply",
+    "baseline": "14 days buffer vs 180 day pulp stability",
+    "target": ">=35 days buffer prior to monsoon season",
+    "trigger_condition": "safety buffer days before seasonal window < 35",
+    "comparison_operator": "<",
+    "trigger_value": 35.0,
+    "approval_tier": "supply_lead",
+    "linkage": [
+      "C3",
+      "F1"
+    ],
+    "caption_template": "Pre-monsoon safety buffer index is {val} days prior to seasonal disruption window."
+  },
+  {
+    "kpi_code": "D1",
+    "name": "Depot Finished Goods Cover Days",
+    "category": "inventory",
+    "baseline": "Static 21 days cover across all depots",
+    "target": "Dynamic 10-14 days cover based on weekly velocity",
+    "trigger_condition": "depot cover days > 16 for a fast-decay SKU",
+    "comparison_operator": ">",
+    "trigger_value": 16.0,
+    "approval_tier": "planner",
+    "linkage": [
+      "D2",
+      "A3"
+    ],
+    "caption_template": "Depot finished goods inventory holds {val} cover days (dynamic target: 10-14 days)."
+  },
+  {
+    "kpi_code": "D2",
+    "name": "Batch Age at Risk",
+    "category": "inventory",
+    "baseline": "No batch tracking; \u20b96 Cr write-offs at 30-day MT/QC cliff",
+    "target": "Zero batches cross day 18 without transfer recommendation",
+    "trigger_condition": "batch age reaches 18 days and depot sell-through won't clear in 7 days",
+    "comparison_operator": ">=",
+    "trigger_value": 18.0,
+    "approval_tier": "planner",
+    "linkage": [
+      "A3",
+      "E2"
+    ],
+    "caption_template": "{val} batches have crossed age 18d without transfer, risking commercial shelf write-off."
+  },
+  {
+    "kpi_code": "D3",
+    "name": "MT/QC Rejection Incident Rate",
+    "category": "inventory",
+    "baseline": "Repeated rejections for <60 days residual shelf-life",
+    "target": "Zero rejection events across summer",
+    "trigger_condition": "batch commercial age crosses 30 days without sale",
+    "comparison_operator": ">=",
+    "trigger_value": 30.0,
+    "approval_tier": "ops",
+    "linkage": [
+      "D2",
+      "A3"
+    ],
+    "caption_template": "Commercial shelf-life breach: {val} batches aged past 30 days face mandatory return or discount."
+  },
+  {
+    "kpi_code": "D4",
+    "name": "Cold Chain In-Transit Temp Excursion",
+    "category": "inventory",
+    "baseline": "No real-time reefer monitoring",
+    "target": "Zero excursions >2\u00b0C over optimal setpoint",
+    "trigger_condition": "transit temperature deviation > 2.0 degrees C",
+    "comparison_operator": ">",
+    "trigger_value": 2.0,
+    "approval_tier": "ops",
+    "linkage": [
+      "D3"
+    ],
+    "caption_template": "Cold chain transit reefer telemetry records {val}\u00b0C maximum temperature excursion."
+  },
+  {
+    "kpi_code": "E1",
+    "name": "Depot Stock Imbalance Index",
+    "category": "distribution",
+    "baseline": "Allocated by last year's mix; some depots choked, others dry",
+    "target": "Depot cover-day variance <6 days across regions",
+    "trigger_condition": "cover-day variance across depots for single SKU > 10 days",
+    "comparison_operator": ">",
+    "trigger_value": 10.0,
+    "approval_tier": "planner",
+    "linkage": [
+      "E2",
+      "A2",
+      "A3"
+    ],
+    "caption_template": "Regional depot finished goods cover variance spans {val} days between fastest and slowest hubs."
+  },
+  {
+    "kpi_code": "E2",
+    "name": "Inter Depot Transfer Utilization",
+    "category": "distribution",
+    "baseline": "Transfers rarely executed, leading to local write-offs",
+    "target": "100% of recommended transfers actioned within 48h",
+    "trigger_condition": "recommended transfer unactioned for > 48 hours",
+    "comparison_operator": ">",
+    "trigger_value": 48.0,
+    "approval_tier": "supply_lead",
+    "linkage": [
+      "D2",
+      "E1",
+      "A3"
+    ],
+    "caption_template": "Inter-depot rebalancing transfer unactioned for {val} hours (SLA: 48h execution cutoff)."
+  },
+  {
+    "kpi_code": "E3",
+    "name": "New SKU Allocation Weight",
+    "category": "distribution",
+    "baseline": "0% weight in historical mix, starved of inventory",
+    "target": ">=70% dynamic real-time velocity weighting for new SKUs",
+    "trigger_condition": "new SKU dynamic weighting in allocation engine < 70%",
+    "comparison_operator": "<",
+    "trigger_value": 0.7,
+    "approval_tier": "planner",
+    "linkage": [
+      "B3",
+      "E1"
+    ],
+    "caption_template": "New SKU dynamic allocation weight is {val_pct}% based on live channel velocity telemetry."
+  },
+  {
+    "kpi_code": "E4",
+    "name": "Channel Fair Share Fulfillment Ratio",
+    "category": "distribution",
+    "baseline": "Ad-hoc dispatching cannibalized high-margin channels",
+    "target": ">=90% fair share allocation compliance",
+    "trigger_condition": "high-margin channel fulfillment ratio < 85%",
+    "comparison_operator": "<",
+    "trigger_value": 0.85,
+    "approval_tier": "supply_lead",
+    "linkage": [
+      "A1",
+      "E3"
+    ],
+    "caption_template": "High-margin channel fulfillment ratio is {val_pct}% under fair-share allocation rules."
+  },
+  {
+    "kpi_code": "F1",
+    "name": "Route Risk Window Vulnerability",
+    "category": "transportation",
+    "baseline": "Highway closed 3 of 5 summers (60% historical probability)",
+    "target": "Pulp buffer secured before seasonal landslide window opens",
+    "trigger_condition": "date between April 15 and June 30 AND pulp cover < 35 days",
+    "comparison_operator": "==",
+    "trigger_value": 1.0,
+    "approval_tier": "supply_lead",
+    "linkage": [
+      "C3",
+      "F2",
+      "A4"
+    ],
+    "caption_template": "Seasonal highway closure window risk vulnerability index is {val} (April 15 to June 30)."
+  },
+  {
+    "kpi_code": "F2",
+    "name": "Emergency vs Planned Freight Mix",
+    "category": "transportation",
+    "baseline": "Spent \u20b93.2 Cr emergency air freight at 5x normal rate",
+    "target": "<2% of total freight volume moved via emergency expediting",
+    "trigger_condition": "single emergency freight booking > \u20b925 lakh or share > 15%",
+    "comparison_operator": ">",
+    "trigger_value": 0.15,
+    "approval_tier": "coo",
+    "linkage": [
+      "F1",
+      "A4"
+    ],
+    "caption_template": "Emergency vs. planned freight mix ratio is {val_pct}% of total summer logistics budget."
+  },
+  {
+    "kpi_code": "F3",
+    "name": "Secondary Logistics Carrier Readiness",
+    "category": "transportation",
+    "baseline": "Zero pre-contracted backup carriers during highway crisis",
+    "target": ">=80% contracted multi-modal secondary carrier readiness",
+    "trigger_condition": "secondary route readiness score < 80%",
+    "comparison_operator": "<",
+    "trigger_value": 0.8,
+    "approval_tier": "supply_lead",
+    "linkage": [
+      "F1",
+      "F2"
+    ],
+    "caption_template": "Secondary multi-modal logistics carrier readiness score is {val_pct}% across bypass routes."
+  },
+  {
+    "kpi_code": "G1",
+    "name": "QC to Supply Chain Pipe Latency",
+    "category": "system",
+    "baseline": "Marketing received daily reports; planners saw them month-end",
+    "target": "Automated ingestion pipeline latency < 24 hours",
+    "trigger_condition": "pipeline data freshness delay > 24 hours",
+    "comparison_operator": ">",
+    "trigger_value": 24.0,
+    "approval_tier": "ops",
+    "linkage": [
+      "B1",
+      "B3"
+    ],
+    "caption_template": "Quick Commerce to supply chain automated data pipe latency is {val} hours."
+  },
+  {
+    "kpi_code": "G2",
+    "name": "MT Signal Capture Rate",
+    "category": "system",
+    "baseline": "Weekly store-level stock data was fragmented",
+    "target": "100% MT EDI/portal signal capture rate",
+    "trigger_condition": "MT signal capture completeness < 100%",
+    "comparison_operator": "<",
+    "trigger_value": 1.0,
+    "approval_tier": "ops",
+    "linkage": [
+      "B2",
+      "E1"
+    ],
+    "caption_template": "Modern Trade EDI and portal signal capture completeness stands at {val_pct}%."
+  },
+  {
+    "kpi_code": "H1",
+    "name": "Planner Active Usage Rate",
+    "category": "governance",
+    "baseline": "2 previous digital pilots stalled after go-live",
+    "target": ">=85% weekly active planner adoption across all 15 planners",
+    "trigger_condition": "planner weekly active interaction rate < 70%",
+    "comparison_operator": "<",
+    "trigger_value": 0.7,
+    "approval_tier": "ops",
+    "linkage": [
+      "H2",
+      "H3"
+    ],
+    "caption_template": "Weekly active planner adoption and interaction rate is {val_pct}% across 15 supply planners."
+  },
+  {
+    "kpi_code": "H2",
+    "name": "Alert to Decision SLA",
+    "category": "governance",
+    "baseline": "S&OP met monthly; urgent decisions sat without action",
+    "target": "Planner SLA 4h, Supply Lead 12h, COO 24h",
+    "trigger_condition": "pending alert exceeds SLA deadline hours without decision",
+    "comparison_operator": ">",
+    "trigger_value": 0.0,
+    "approval_tier": "supply_lead",
+    "linkage": [
+      "H3",
+      "A2"
+    ],
+    "caption_template": "Pending operational alert response delay is {val} hours past assigned authority tier SLA."
+  },
+  {
+    "kpi_code": "H3",
+    "name": "Alert False Positive Rate",
+    "category": "governance",
+    "baseline": "Alert fatigue in past tools caused complete disuse",
+    "target": "<15% override rate for each alert type",
+    "trigger_condition": "monthly alert override rate exceeds 25%",
+    "comparison_operator": ">",
+    "trigger_value": 0.25,
+    "approval_tier": "ops",
+    "linkage": [
+      "H2",
+      "B2"
+    ],
+    "caption_template": "Monthly false-positive alert override rate is {val_pct}% (H3 governance threshold: 25%)."
+  }
+]

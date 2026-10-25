@@ -1,0 +1,10 @@
+period,defect_type,count,total_produced
+2027-W11,DarkStore_Stockout,580,6100
+2027-W11,Forecast_Underestimation_Lag,180,6100
+2027-W11,Channel_Allocation_Mismatch,90,6100
+2027-W12,DarkStore_Stockout,490,6100
+2027-W12,Forecast_Underestimation_Lag,160,6100
+2027-W12,Channel_Allocation_Mismatch,80,6100
+2027-W13,DarkStore_Stockout,210,6200
+2027-W13,Forecast_Underestimation_Lag,90,6200
+2027-W13,Channel_Allocation_Mismatch,40,6200

@@ -1,0 +1,13 @@
+period,defect_type,count,total_produced
+2027-W10,Batch_Age_Past_18d,520,6100
+2027-W10,Rejection_Past_30d,180,6100
+2027-W10,Depot_Handling_Spoilage,65,6100
+2027-W11,Batch_Age_Past_18d,590,6200
+2027-W11,Rejection_Past_30d,210,6200
+2027-W11,Depot_Handling_Spoilage,75,6200
+2027-W12,Batch_Age_Past_18d,410,6200
+2027-W12,Rejection_Past_30d,140,6200
+2027-W12,Depot_Handling_Spoilage,50,6200
+2027-W13,Batch_Age_Past_18d,120,6300
+2027-W13,Rejection_Past_30d,40,6300
+2027-W13,Depot_Handling_Spoilage,20,6300

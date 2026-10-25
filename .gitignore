@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing and cache
+.pytest_cache/
+__pycache__/
+*.py[cod]
+*$py.class
+.coverage
+.cache
+
+# Build outputs
+dist/
+build/
+
+# Environments
+.venv/
+env/
+venv/
+ENV/
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Antigravity / Agents internal caches if any
+.agents/

@@ -1,0 +1,13 @@
+period,defect_type,count,total_produced
+2027-W10,Regional_Stock_Imbalance,980,11000
+2027-W10,Depot_Stockout_Starvation,220,11000
+2027-W10,Delayed_InterDepot_Transfer,85,11000
+2027-W11,Regional_Stock_Imbalance,1120,11000
+2027-W11,Depot_Stockout_Starvation,260,11000
+2027-W11,Delayed_InterDepot_Transfer,95,11000
+2027-W12,Regional_Stock_Imbalance,940,11000
+2027-W12,Depot_Stockout_Starvation,210,11000
+2027-W12,Delayed_InterDepot_Transfer,80,11000
+2027-W13,Regional_Stock_Imbalance,720,11000
+2027-W13,Depot_Stockout_Starvation,180,11000
+2027-W13,Delayed_InterDepot_Transfer,60,11000

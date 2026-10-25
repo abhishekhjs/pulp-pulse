@@ -1,0 +1,10 @@
+period,defect_type,count,total_produced
+2027-W14,Pulp_Stockout_Throttle,65,4600
+2027-W14,Capacity_Exhaustion_Bottleneck,32,4600
+2027-W14,Unplanned_SKU_Switchover,18,4600
+2027-W15,Pulp_Stockout_Throttle,52,4600
+2027-W15,Capacity_Exhaustion_Bottleneck,28,4600
+2027-W15,Unplanned_SKU_Switchover,15,4600
+2027-W16,Pulp_Stockout_Throttle,25,4667
+2027-W16,Capacity_Exhaustion_Bottleneck,15,4667
+2027-W16,Unplanned_SKU_Switchover,10,4667
